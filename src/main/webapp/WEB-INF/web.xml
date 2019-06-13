@@ -1,0 +1,89 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>WebUploading</servlet-name>
+  	<display-name>WebUploading</display-name>
+  	<description></description>
+  	<servlet-class>uploader.WebUploading</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TestRequest</servlet-name>
+  	<display-name>TestRequest</display-name>
+  	<description></description>
+  	<servlet-class>uploader.TestRequest</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DataImportServlet</servlet-name>
+  	<display-name>DataImportServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.DataImportServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DataReturn</servlet-name>
+  	<display-name>DataReturn</display-name>
+  	<description></description>
+  	<servlet-class>controller.DataReturn</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TypeRequest2_1</servlet-name>
+  	<display-name>TypeRequest2_1</display-name>
+  	<description></description>
+  	<servlet-class>controller.TypeRequest2_1</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TestDataSubmit</servlet-name>
+  	<display-name>TestDataSubmit</display-name>
+  	<description></description>
+  	<servlet-class>controller.TestDataSubmit</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ChaChongOnline</servlet-name>
+  	<display-name>ChaChongOnline</display-name>
+  	<description></description>
+  	<servlet-class>controller.ChaChongOnline</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>PrintPDF</servlet-name>
+  	<display-name>PrintPDF</display-name>
+  	<description></description>
+  	<servlet-class>controller.PrintPDF</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>WebUploading</servlet-name>
+  	<url-pattern>/WebUploading</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TestRequest</servlet-name>
+  	<url-pattern>/TestRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DataImportServlet</servlet-name>
+  	<url-pattern>/DataImportServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DataReturn</servlet-name>
+  	<url-pattern>/DataReturn</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TypeRequest2_1</servlet-name>
+  	<url-pattern>/TypeRequest2_1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TestDataSubmit</servlet-name>
+  	<url-pattern>/TestDataSubmit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ChaChongOnline</servlet-name>
+  	<url-pattern>/ChaChongOnline</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>PrintPDF</servlet-name>
+  	<url-pattern>/PrintPDF</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

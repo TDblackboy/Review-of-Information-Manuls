@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<title>信息分析</title>
+
+<!-- H+ -->
+<link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+<link href="../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+<link href="../css/animate.min.css" rel="stylesheet">
+<link href="../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+<link href="../css/plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+<!-- WebUploader -->
+<link rel="stylesheet" type="text/css" href="../css/webuploader.css">
+
+</head>
+
+<body class="gray-bg top-navigation">
+
+	<!-- header  -->
+	<div class="row border-bottom white-bg">
+		<nav class="navbar navbar-static-top" role="navigation">
+
+			<button aria-controls="navbar" aria-expanded="false"
+				data-target="#navbar" data-toggle="collapse"
+				class="navbar-toggle collapsed" type="button">
+				<i class="fa fa-reorder"></i>
+			</button>
+			<a href="#" class="navbar-brand">Rain</a>
+		</nav>
+	</div>
+
+	<!-- body -->
+	<!-- 面板 -->
+	<div class="ibox">
+
+		<!-- 标头 -->
+		<div class="ibox-title">
+			<h5>信息技术手册查重错误比对分析</h5>
+		</div>
+
+		<!-- 内容 -->
+		<div class="ibox-content">
+			<div class="tabs-container">
+
+				<!-- 选项卡：左边样式 -->
+				<div class="tabs-left">
+
+					<!-- 卡标 -->
+					<ul class="nav nav-tabs">
+						<li class=""><a data-toggle="tab" href="#tab-1">数据导入</a></li>
+						<li class="active"><a data-toggle="tab" href="#tab-2">数据分类</a></li>
+						<li class=""><a data-toggle="tab" href="#tab-3">数据查重</a></li>
+					</ul>
+
+					<!-- 对应栏目 -->
+					<div class="tab-content ">
+
+						<!-- 1 -->
+						<div id="tab-1" class="tab-pane">
+							<div class="panel-body">
+
+								<div class="wrapper wrapper-content animated fadeIn">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="ibox float-e-margins">
+												<div class="ibox-content">
+													<strong>上传文件</strong>
+													<div id="uploader" class="wu-example">
+														<div id="thelist" class="uploader-list"></div>
+														<div class="btns">
+															<div id="picker">选择文件</div>
+															<button id="ctlBtn" class="btn btn-default">开始上传</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- end of row -->
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="ibox float-e-margins">
+												<div class="ibox-content">
+													<button id="btn_result" type="button"
+														class="btn btn-primary">查看结果</button>
+													<table
+														class="table table-striped table-bordered table-hover dataTables-example">
+														<thead>
+															<tr>
+																<th>热词</th>
+																<th>内容</th>
+															</tr>
+														</thead>
+														<tbody id="new_data01">
+															<!-- 插入数据 -->
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- end of panel -->
+							</div>
+						</div>
+
+						<!-- 2 -->
+						<div id="tab-2" class="tab-pane  active">
+							<div class="panel-body">
+								<!--  -->
+
+								<div class="wrapper wrapper-content animated fadeIn">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="ibox  float-e-margins">
+												<div class="ibox-content">
+													<div class="tabs-container">
+														<ul class="nav nav-tabs">
+															<li class=""><a id="a_table_2-1" data-toggle="tab"
+																href="#tab-2-1" aria-expanded="true">分类结果展示</a></li>
+															<li class="active"><a data-toggle="tab"
+																href="#tab-2-2" aria-expanded="false">测试自动分类</a></li>
+														</ul>
+														<div class="tab-content">
+															<div id="tab-2-1" class="tab-pane">
+																<div>
+																	<!--展示分类结果  -->
+																	<div class="row">
+																		<div class="col-sm-12">
+																			<div class="ibox float-e-margins">
+																				<div class="ibox-content">
+																					<table
+																						class="table table-striped table-bordered table-hover dataTables-example">
+																						<thead>
+																							<tr>
+																								<th>热词</th>
+																								<th>分类</th>
+																								<th>关键字</th>
+																								<th>模糊字段</th>
+																							</tr>
+																						</thead>
+																						<tbody id="new_typeShow">
+																						</tbody>
+																					</table>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div id="tab-2-2" class="tab-pane active">
+																<div>
+																	<!-- 测试内容 -->
+																	<div class="row">
+																		<div class="col-sm-12">
+																			<div class="ibox float-e-margins">
+																				<div class="ibox-content">
+																					<h5>输入测试数据</h5>
+																					<form class="form-horizontal m-t" id="commentForm">
+																						<div class="form-group">
+																							<label class="col-sm-3 control-label">热词：</label>
+																							<div class="col-sm-8">
+																								<input id="cname" type="" class="form-control"
+																									name="name" required="" aria-required="true">
+																							</div>
+																						</div>
+																						<div class="form-group">
+																							<label class="col-sm-3 control-label">说明：</label>
+																							<div class="col-sm-8">
+																								<textarea id="ccomment" name="comment"
+																									class="form-control" required=""
+																									aria-required="true"></textarea>
+																							</div>
+																						</div>
+																						<div class="form-group">
+																							<div class="col-sm-4 col-sm-offset-3">
+																								<button id="testdata_sub"
+																									class="btn btn-primary">提交</button>
+																							</div>
+																						</div>
+																					</form>
+																				</div>
+																			</div>
+
+																		</div>
+																	</div>
+																	<!-- end -->
+
+																	<!-- 显示测试结果 -->
+																	<div class="row">
+																		<div class="col-sm-12">
+																			<div class="ibox float-e-margins">
+																				<div class="ibox-content">
+																					<h5>测试结果</h5>
+																					<table
+																						class="table table-striped table-bordered table-hover dataTables-example">
+																						<tbody id="new_test_show">
+																						</tbody>
+																					</table>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<!-- end -->
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!--  -->
+							</div>
+						</div>
+
+						<!-- 3 -->
+						<div id="tab-3" class="tab-pane">
+							<div class="panel-body">
+
+								<div class="wrapper wrapper-content animated fadeIn">
+
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="ibox float-e-margins">
+												<div class="ibox-content">
+													<div class="row">
+													<div class="col-sm-2">
+														<strong>打印查重结果[ PDF]</strong>
+													</div>
+													<div class="col-sm-10">
+														<button id="btn_printPDF" type="button" class="btn btn-primary">打印</button>
+													</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="ibox float-e-margins">
+												<div class="ibox-content">
+													<strong>在线查重测试</strong>
+													<!-- begin form -->
+													<form class="form-horizontal m-t" id="commentForm2">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">热词：</label>
+															<div class="col-sm-8">
+																<input id="chachongname" type="" class="form-control"
+																	name="name" required="" aria-required="true">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-3 control-label">说明：</label>
+															<div class="col-sm-8">
+																<textarea id="chachongcomment" name="comment"
+																	class="form-control" required="" aria-required="true"></textarea>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="col-sm-4 col-sm-offset-3">
+																<button id="chachongtest_sub" class="btn btn-primary">查重</button>
+															</div>
+														</div>
+													</form>
+													<!-- end of form -->
+												</div>
+											</div>
+
+										</div>
+									</div>
+									<!--  -->
+									<!-- 显示测试结果 -->
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="ibox float-e-margins">
+												<div class="ibox-content">
+													<h5>查重结果</h5>
+													<table
+														class="table table-striped table-bordered table-hover dataTables-example">
+														<tbody id="new_chachongtest_show">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- end -->
+									<!--  -->
+								</div>
+								<!-- end of panel -->
+							</div>
+						</div>
+						<!--end of 3  -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- H+ -->
+	<script src="../js/jquery.min.js?v=2.1.4"></script>
+	<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="../js/hplus.min.js?v=4.1.0"></script>
+
+	<!-- 查询：original_word -->
+	<script src="../js/plugins/dataTables.bootstrap.js"></script>
+	<script src="../js/plugins/jquery.dataTables.js"></script>
+	<script type="text/javascript">
+		$("#btn_result").click(function() {
+			//先清空
+			$("#new_data01").html("");
+			/* alert("发送请求中.....") */
+			$.ajax({
+				type : "post",
+				url : "../DataReturn",
+				dataType : "json",
+				success : function(response) {
+					/* alert("ok") */
+					/* var content = eval(response); */
+					handleResponse(response);
+				},
+				error : function() {
+					alert("error")
+				}
+			});
+		});
+		function handleResponse(response) {
+			var tbody = document.getElementById("new_data01");
+			var addContent = "";
+			$.each(response, function(index, item) {
+				var td = "<td>" + item.word + "</td><td>" + item.explaining
+						+ "</td>";
+				var tr = "<tr>" + td + "</tr>";
+				addContent += tr;
+			});
+			$("#new_data01").append(addContent);
+		}
+	</script>
+
+	<!--查询：typeset -->
+	<script type="text/javascript">
+		$("#a_table_2-1").click(function() {
+			$("#new_typeShow").html("");
+			/* alert("发送请求中.....") */
+			$.ajax({
+				type : "post",
+				url : "../TypeRequest2_1",
+				dataType : "json",
+				success : function(response) {
+					/* alert("ok") */
+					/* var content = eval(response); */
+					handleResponse2(response);
+				},
+				error : function() {
+					alert("error")
+				}
+			});
+		});
+		function handleResponse2(response) {
+			var tbody = document.getElementById("new_typeShow");
+			var addContent = "";
+			$.each(response, function(index, item) {
+				var td = "<td>" + item.reci + "</td><td>" + item.type
+						+ "</td><td>" + item.keyWord + "</td><td>" + item.mohu
+						+ "</td>";
+				var tr = "<tr>" + td + "</tr>";
+				addContent += tr;
+			});
+			$("#new_typeShow").append(addContent);
+		}
+	</script>
+
+	<!-- 测试数据提交 -->
+	<script type="text/javascript">
+		//阻止表单默认提交刷新页面
+		$("#commentForm").submit(function(e) {
+			e.preventDefault();
+		});
+		$("#testdata_sub").click(function() {
+			//alert("loading......");
+			$("#new_test_show").html("");
+			//先获取表单数据
+			var reci = document.getElementById("cname").value;
+			var text = document.getElementById("ccomment").value;
+			//alert(reci+text);
+			//
+			$.ajax({
+				type : "post",
+				url : "../TestDataSubmit",
+				data : {
+					"reci" : reci,
+					"text" : text
+				},
+				dataType : "json",
+				success : function(response) {
+					handleResponse3(response);
+				},
+				error : function() {
+					alert("无法测试");
+				}
+			});
+			//alert("end");
+		});
+		function handleResponse3(response) {
+			var tbody = document.getElementById("new_test_show");
+			var addContent = "";
+			var tr1 = "<tr><td>热词</td><td>" + response.reci + "</td>";
+			var tr2 = "<tr><td>分类</td><td>" + response.type + "</td>";
+			var tr3 = "<tr><td>关键字</td><td>" + response.keyword + "</td>";
+			var tr4 = "<tr><td>模糊字段</td><td>" + response.mohu + "</td>";
+			addContent = tr1 + tr2 + tr3 + tr4;
+			/* $.each(response, function(index, item) {
+				
+			}); */
+			$("#new_test_show").append(addContent);
+		}
+	</script>
+
+	<!-- 查重测试数据提交 -->
+	<script type="text/javascript">
+		//阻止表单默认提交刷新页面
+		$("#commentForm2").submit(function(e) {
+			e.preventDefault();
+		});
+		$("#chachongtest_sub").click(function() {
+			//alert("loading......");
+			$("#new_chachongtest_show").html("");
+			//先获取表单数据
+			var reci = document.getElementById("chachongname").value;
+			var text = document.getElementById("chachongcomment").value;
+			//alert(reci+text);
+			$.ajax({
+				type : "post",
+				url : "../ChaChongOnline",
+				data : {
+					"reci" : reci,
+					"text" : text
+				},
+				dataType : "json",
+				success : function(response) {
+					handleResponse5(response);
+				},
+				error : function() {
+					alert("无法测试");
+				}
+			});
+			//alert("end");
+		});
+		function handleResponse5(response) {
+			var tbody = document.getElementById("new_chachongtest_show");
+			var addContent = "";
+			var tr1 = "<tr><td>热词</td><td>" + response.reci + "</td>";
+			var tr2 = "<tr><td>相似度</td><td>" + response.degree + "</td>";
+			var tr3 = "<tr><td>测试文本</td><td>" + response.testtext + "</td>";
+			var tr4 = "<tr><td>数据库文本</td><td>" + response.dbtext + "</td>";
+			addContent = tr1 + tr2 + tr3 + tr4;
+			$("#new_chachongtest_show").append(addContent);
+		}
+	</script>
+
+	<!-- 打印结果PDF -->
+	<script type="text/javascript">
+	
+		$("#btn_printPDF").click(function() {
+			//window.location.href = "../PrintPDF";
+			$.ajax({
+				type : "post",
+				url : "../PrintPDF",
+				dataType : "text",
+				success : function(response) {
+					alert(response);
+				}
+			});
+		});
+	</script>
+	
+
+	<!-- WebUploader -->
+	<script type="text/javascript" src="../js/webuploader.min.js"></script>
+	<script type="text/javascript">
+		//点击选择文件没反应-重新渲染才行（F12）????????????????????????
+
+		var uploader = WebUploader
+				.create({
+					auto : false, //自动上传 
+					swf : '../css/Uploader.swf', // swf文件路径 
+					server : '../DataImportServlet', // 文件接收服务端。 
+					pick : '#picker', // 选择文件的按钮。可选。 
+					accept : {
+						title : 'Files',
+						extensions : 'pdf,doc,docx',
+						mimeTypes : 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+								+ ',application/pdf'
+					},
+					fileNumLimit : 1, //最大上传数量为10
+					fileSingleSizeLimit : 1 * 1024 * 1024, //限制上传单个文件大小1M 
+					fileSizeLimit : 1 * 1024 * 1024, //限制上传所有文件大小1M 
+					resize : false
+				// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！ 
+				});
+
+		//上传前的判断处理 
+		uploader.on('error', function(type) {
+			if (type === 'Q_EXCEED_NUM_LIMIT') {
+				layer.msg('最多允许上传1份xxx');
+			}
+			if (type === 'F_DUPLICATE') {
+				layer.msg('xxx重复，不能上传！');
+			}
+			if (type == "Q_TYPE_DENIED") {
+				layer.msg("请上传doc、pdf格式文件");
+			} else if (type == "F_EXCEED_SIZE") {
+				layer.msg("文件大小不能超过1M");
+			}
+		});
+
+		// 当有文件被添加进队列的时候
+		var $list = $("#uploader");
+		uploader
+				.on(
+						'fileQueued',
+						function(file) {
+							$list
+									.append('<div id="' + file.id 
+																+ '" class="item">'
+											+ '<h4 class="info">'
+											+ file.name
+											+ '</h4>'
+											+ '<p class="state">等待上传...</p>'
+											+ '<a class="webuploadDelbtn">删除</a><br/>'
+											+ '</div>');
+							uploader.refresh();
+						});
+
+		//点击开始上传
+		$("#ctlBtn").on('click', function() {
+			uploader.upload();
+		});
+
+		// 文件上传过程中创建进度条实时显示。
+		uploader
+				.on(
+						'uploadProgress',
+						function(file, percentage) {
+							var $li = $('#' + file.id), $percent = $li
+									.find('.progress .progress-bar'); // 避免重复创建
+							if (!$percent.length) {
+								$percent = $(
+										'<div class="progress progress-striped active">'
+												+ '<div class="progress-bar" role="progressbar" style="width: 0%">'
+												+ '</div>' + '</div>')
+										.appendTo($li).find('.progress-bar');
+							}
+							$li.find('p.state').text('上传中');
+							$percent.css('width', percentage * 100 + '%');
+						});
+
+		//文件成功、失败处理 
+		uploader.on('uploadSuccess', function(file) {
+			$('#' + file.id).find('p.state').text('已上传');
+			$('#' + file.id).find('a.webuploadDelbtn').remove();
+		});
+		//上传错误 
+		uploader.on('uploadError', function(file) {
+			$('#' + file.id).find('p.state').text('上传出错');
+		});
+		//上传完成 
+		uploader.on('uploadComplete', function(file) {
+			$('#' + file.id).find('.progress').fadeOut();
+		});
+
+		//删除 
+		$list.on("click", ".webuploadDelbtn", function() {
+			var $ele = $(this);
+			var id = $ele.parent().attr("id");
+			var file = uploader.getFile(id);
+			uploader.removeFile(file, true);
+		});
+
+		//删除时执行的方法
+		uploader.on('fileDequeued', function(file) {
+			$(file.id).remove();
+			$('#' + file.id).find('span.state').text('已经取消');
+			$('#' + file.id).hide();
+			console.log("remove");
+		});
+	</script>
+
+
+
+</body>
+
+
+</html>
